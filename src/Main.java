@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
         task1();
         task2();
+        task3();
     }
 
     /**
@@ -62,5 +63,33 @@ public class Main {
 
         }
         System.out.println(Arrays.toString(array));
+    }
+
+    /**
+     * Задача 3:
+     * Сортировка расчёской
+     * C генерацией случайных чисел
+     */
+    private static void task3() {
+        Random newRandom = new Random();
+        int[] array = new int[10];
+        for (int r = 0; r < 10; r++) {
+            array[r] = newRandom.nextInt(100) - 10;
+        }
+        final double factor = 1.247;
+        double step = array.length - 1;
+
+        while (step >= 1) {
+            for (int i = 0; i + step < array.length; ++i) {
+                int curStep = (int) (i + step);
+                if (array[i] > array[curStep]) {
+                    int temp = array[i];
+                    array[i] = array[curStep];
+                    array[curStep] = temp;
+                }
+            }
+            step /= factor;
+        }
+        System.out.println("a = " + Arrays.toString(array));
     }
 }
